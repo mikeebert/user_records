@@ -1,4 +1,5 @@
 require 'record_creator'
+require 'user_record'
 
 describe RecordCreator do
 
@@ -47,6 +48,20 @@ describe RecordCreator do
       creator = RecordCreator.new("LastName, FirstName, FavoriteColor, 01/01/01")
 
       expect(creator.valid?).to eq(true)
+    end
+
+  end
+
+  context 'returning a valid record' do
+    it 'builds a record with valid data' do
+      date_of_birth = "01/01/01"
+      creator = RecordCreator.new("Last, First, Color, #{date_of_birth}")
+      user_record = creator.record
+
+      expect(user_record.first_name).to eq("First")
+      expect(user_record.last_name).to eq("Last")
+      expect(user_record.favorite_color).to eq("Color")
+      expect(user_record.date_of_birth).to eq(Date.parse(date_of_birth))
     end
   end
 

@@ -1,8 +1,21 @@
 class RecordCreator
+
+  LAST_NAME_POSITION = 0
+  FIRST_NAME_POSITION = 1
+  FAVORITE_COLOR_POSITION = 2
   DATE_OF_BIRTH_POSITION = 3
 
   def initialize(data)
     @data = data
+  end
+
+  def record
+    UserRecord.new({
+      first_name: fields[FIRST_NAME_POSITION],
+      last_name: fields[LAST_NAME_POSITION],
+      favorite_color: fields[FAVORITE_COLOR_POSITION],
+      date_of_birth: date
+    })
   end
 
   def valid?
