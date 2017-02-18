@@ -1,3 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rspec'
+gem 'grape'
+
+group :development, :test do
+  gem 'rspec'
+  gem 'rack-test'
+  gem 'pry'
+end
