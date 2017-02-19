@@ -1,3 +1,5 @@
+require 'user_record'
+
 class RecordCreator
 
   LAST_NAME_POSITION = 0

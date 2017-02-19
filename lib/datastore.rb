@@ -8,8 +8,8 @@ class Datastore
   end
 
   def self.save(record)
-    f = File.open(@data_location, 'w+')
-    f << self.convert(record)
+    f = File.open(@data_location, 'a')
+    f.puts(self.convert(record))
     f.close
   end
 
