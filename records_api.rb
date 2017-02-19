@@ -1,5 +1,4 @@
 require 'grape'
-require 'datastore'
 
 module Records
   class API < Grape::API
@@ -8,7 +7,7 @@ module Records
       desc 'add a record to the datastore'
 
       post '/' do
-        record_creator = RecordCreator.new(request.body.string)
+        record_creator = RecordCreator.new(extract_data(request))
 
         if record_creator.valid?
           ::Datastore.save(record_creator.record)
@@ -18,5 +17,10 @@ module Records
       end
     end
 
+    helpers do
+      def extract_data(request)
+        request.env["api.request.input"] || ''
+      end
+    end
   end
 end
