@@ -39,7 +39,7 @@ class RecordCreator
   end
 
   def date
-    @date ||= Date.parse(fields[DATE_OF_BIRTH_POSITION]) rescue nil
+    @date ||= Date.strptime(fields[DATE_OF_BIRTH_POSITION], '%m/%d/%Y') rescue nil
   end
 
   def separator
