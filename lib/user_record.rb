@@ -14,12 +14,14 @@ class UserRecord
     @date_of_birth  = attributes[:date_of_birth]
   end
 
-  def attributes
-    {
-      last_name: @last_name,
-      first_name: @first_name,
-      favorite_color: @favorite_color,
-      date_of_birth: @date_of_birth
-    }
+  def entity
+    Entity.new(self)
+  end
+
+  class Entity < Grape::Entity
+    expose :last_name
+    expose :first_name
+    expose :favorite_color
+    expose :date_of_birth
   end
 end

@@ -22,16 +22,4 @@ describe UserRecord do
     record = UserRecord.new({date_of_birth: date_of_birth})
     expect(record.date_of_birth).to eq(date_of_birth)
   end
-
-  it 'returns the attrubutes as a hash' do
-    attributes = {
-      first_name: 'Roger',
-      last_name: 'Rabbit',
-      date_of_birth: Date.parse('01/01/01'),
-      favorite_color: 'yellow'
-    }
-    record = UserRecord.new(attributes)
-
-    expect(record.attributes).to eq(attributes)
-  end
 end
