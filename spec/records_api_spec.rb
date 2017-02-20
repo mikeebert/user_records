@@ -35,4 +35,20 @@ describe Records::API do
       expect(Datastore.records.first.last_name).to eq('ApiTestLast')
     end
   end
+
+  context 'GET records' do
+    context 'birthdate' do
+      it 'has a records/birthdate endpoint' do
+        get '/records/birthdate'
+
+        expect(last_response.status).to eq(200)
+      end
+    end
+  end
+
+  private
+
+  def create_record(data)
+    Datastore.save(RecordCreator.new(data).record)
+  end
 end

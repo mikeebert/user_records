@@ -15,6 +15,10 @@ module Records
           status 400
         end
       end
+
+      get '/birthdate' do
+
+      end
     end
 
     helpers do
