@@ -14,7 +14,7 @@ class Datastore
   end
 
   def self.records
-    @records ||= File.read(@data_location).lines.map do |record|
+    File.read(@data_location).lines.map do |record|
       RecordCreator.new(record).record
     end
   end
