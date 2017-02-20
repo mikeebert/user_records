@@ -1,7 +1,13 @@
 require 'grape'
+require 'record_creator'
+require 'record_sorter'
 
 module Records
   class API < Grape::API
+    content_type :txt, 'application/txt'
+    content_type :json, 'application/json'
+
+    format :json
 
     resource :records do
       desc 'add a record to the datastore'
@@ -17,7 +23,9 @@ module Records
       end
 
       get '/birthdate' do
+        records = ::RecordSorter.sort_by_birth_date(Datastore.records)
 
+        present records
       end
     end
 

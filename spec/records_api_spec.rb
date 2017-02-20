@@ -2,6 +2,7 @@ require 'rack/test'
 require 'csv'
 require 'spec_helper'
 require './records_api'
+require 'datastore'
 
 def app
   Records::API
@@ -42,6 +43,16 @@ describe Records::API do
         get '/records/birthdate'
 
         expect(last_response.status).to eq(200)
+      end
+
+      it 'retrives records sorted by birthdate' do
+        create_record('BornLater, Bobby, Blue, 02/01/01')
+        create_record('BornEarlier, Adam, Azul, 01/01/01')
+
+        get '/records/birthdate'
+        records = JSON.parse(last_response.body)
+
+        expect(records.first['last_name']).to eq('BornEarlier')
       end
     end
   end
