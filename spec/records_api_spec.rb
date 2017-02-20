@@ -18,7 +18,7 @@ describe Records::API do
     clear_datastore
   end
 
-  context 'records' do
+  context 'POST records' do
 
     context 'no data posted' do
       it 'returns a 400 if no data is sent' do
@@ -27,14 +27,12 @@ describe Records::API do
         expect(last_response.status).to eq(400)
       end
     end
+
+    it 'saves a record do to the datastore' do
+      data = "ApiTestLast, TestFirst, TestColor, 01/01/01"
+      post '/records', data, 'CONTENT_TYPE' => 'application/txt'
+
+      expect(Datastore.records.first.last_name).to eq('ApiTestLast')
+    end
   end
-
-  it 'saves a record do to the datastore' do
-    data = "ApiTestLast, TestFirst, TestColor, 01/01/01"
-    post '/records', data, 'CONTENT_TYPE' => 'application/txt'
-
-    expect(Datastore.records.first.last_name).to eq('ApiTestLast')
-  end
-
 end
-
