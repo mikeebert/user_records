@@ -29,7 +29,9 @@ module Records
       end
 
       get '/name' do
+        records = ::RecordSorter.sort_by_last_name_descending(Datastore.records)
 
+        present records
       end
     end
 

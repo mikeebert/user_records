@@ -62,6 +62,16 @@ describe Records::API do
 
         expect(last_response.status).to eq(200)
       end
+
+      it 'retrives records by last name in reverse order' do
+        create_record('Brown, Bobby, Blue, 02/01/01')
+        create_record('Adams, Adam, Azul, 01/01/01')
+
+        get '/records/name'
+        records = JSON.parse(last_response.body)
+
+        expect(records.first['last_name']).to eq('Brown')
+      end
     end
   end
 
