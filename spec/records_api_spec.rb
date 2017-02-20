@@ -55,6 +55,14 @@ describe Records::API do
         expect(records.first['last_name']).to eq('BornEarlier')
       end
     end
+
+    context 'name' do
+      it 'has a records/name endpoint' do
+        get '/records/name'
+
+        expect(last_response.status).to eq(200)
+      end
+    end
   end
 
   private

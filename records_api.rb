@@ -27,6 +27,10 @@ module Records
 
         present records
       end
+
+      get '/name' do
+
+      end
     end
 
     helpers do
