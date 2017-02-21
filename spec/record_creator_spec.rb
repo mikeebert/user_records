@@ -35,33 +35,26 @@ describe RecordCreator do
 
       expect(creator.valid?).to eq(false)
     end
-
-    it 'is valid if a proper date is passed in' do
-      creator = RecordCreator.new("Last, First, Favorite, 2/1/2017")
-
-      expect(creator.valid?).to eq(true)
-    end
   end
 
   context 'valid data' do
     it 'is valid if all fields are passed in' do
-      creator = RecordCreator.new("LastName, FirstName, FavoriteColor, 01/01/01")
+      creator = RecordCreator.new("LastName, FirstName, FavoriteColor, 28/02/2001")
 
       expect(creator.valid?).to eq(true)
     end
-
   end
 
   context 'returning a valid record' do
     it 'builds a record with valid data' do
-      date_of_birth = "01/31/2001"
+      date_of_birth = "31/1/2001"
       creator = RecordCreator.new("Last, First, Color, #{date_of_birth}")
       user_record = creator.record
 
       expect(user_record.first_name).to eq("First")
       expect(user_record.last_name).to eq("Last")
       expect(user_record.favorite_color).to eq("Color")
-      expect(user_record.date_of_birth).to eq(Date.strptime(date_of_birth, '%m/%d/%Y'))
+      expect(user_record.date_of_birth).to eq(Date.strptime(date_of_birth, '%d/%m/%Y'))
     end
   end
 
