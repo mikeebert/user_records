@@ -5,12 +5,13 @@ require 'date'
 require 'user_record'
 
 describe Datastore do
+  let(:date_of_birth) { '28/02/2011' }
   let(:user_record) {
     UserRecord.new({
       first_name: "TestFirst",
       last_name: "TestLast",
       favorite_color: "TestColor",
-      date_of_birth: Date.strptime('01/17/2001', '%m/%d/%Y')
+      date_of_birth: Date.strptime(date_of_birth, '%d/%m/%Y')
     })
   }
 
@@ -32,6 +33,6 @@ describe Datastore do
     Datastore.save(user_record)
     datafile = File.open('./spec/support/record_datastore.txt')
 
-    expect(datafile.read).to include('01/17/2001')
+    expect(datafile.read).to include(date_of_birth)
   end
 end

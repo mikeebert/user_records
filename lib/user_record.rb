@@ -19,9 +19,16 @@ class UserRecord
   end
 
   class Entity < Grape::Entity
+    format_with(:dd_mm_yyyy) do |date|
+      date.strftime('%d/%m/%Y')
+    end
+
     expose :last_name
     expose :first_name
     expose :favorite_color
-    expose :date_of_birth
+
+    with_options(format_with: :dd_mm_yyyy) do
+      expose :date_of_birth
+    end
   end
 end

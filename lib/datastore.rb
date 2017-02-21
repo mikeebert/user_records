@@ -29,6 +29,6 @@ class Datastore
     "#{record.last_name}," +
     "#{record.first_name}," +
     "#{record.favorite_color}," +
-    "#{record.date_of_birth.strftime('%m/%d/%Y')}"
+    "#{record.date_of_birth.strftime('%d/%m/%Y')}"
   end
 end
