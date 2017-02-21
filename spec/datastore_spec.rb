@@ -1,7 +1,8 @@
-require 'datastore'
-require 'user_record'
-require 'date'
 require 'spec_helper'
+
+require 'datastore'
+require 'date'
+require 'user_record'
 
 describe Datastore do
   let(:user_record) {

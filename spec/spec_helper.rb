@@ -1,7 +1,4 @@
-require 'fileutils'
-
 def clear_datastore
-  f = File.new('./spec/support/record_datastore.txt', 'w+')
-  f.close
+  File.new('./spec/support/record_datastore.txt', 'w+').close
   Datastore.reset!
 end
