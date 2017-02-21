@@ -1,8 +1,8 @@
 require 'grape'
-require 'record_creator'
-require 'record_sorter'
+require 'user_record_creator'
+require 'user_record_sorter'
 
-module Records
+module UserRecords
   class API < Grape::API
     content_type :txt, 'application/txt'
     content_type :json, 'application/json'
@@ -13,7 +13,7 @@ module Records
       desc 'add a record to the datastore'
 
       post '/' do
-        record_creator = RecordCreator.new(extract_data(request))
+        record_creator = UserRecordCreator.new(extract_data(request))
 
         if record_creator.valid?
           ::Datastore.save(record_creator.record)
@@ -23,13 +23,13 @@ module Records
       end
 
       get '/birthdate' do
-        records = ::RecordSorter.sort_by_birth_date(Datastore.records)
+        records = ::UserRecordSorter.sort_by_birth_date(Datastore.records)
 
         present records
       end
 
       get '/name' do
-        records = ::RecordSorter.sort_by_last_name_descending(Datastore.records)
+        records = ::UserRecordSorter.sort_by_last_name_descending(Datastore.records)
 
         present records
       end

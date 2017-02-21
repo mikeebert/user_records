@@ -1,14 +1,15 @@
-require 'rack/test'
 require 'csv'
+require 'rack/test'
 require 'spec_helper'
-require './records_api'
+
 require 'datastore'
+require './user_records_api'
 
 def app
-  Records::API
+  UserRecords::API
 end
 
-describe Records::API do
+describe UserRecords::API do
   include Rack::Test::Methods
 
   before(:all) do
@@ -77,6 +78,6 @@ describe Records::API do
   private
 
   def create_record(data)
-    Datastore.save(RecordCreator.new(data).record)
+    Datastore.save(UserRecordCreator.new(data).record)
   end
 end

@@ -1,4 +1,4 @@
-class RecordSorter
+class UserRecordSorter
   def self.sort_by_last_name_descending(records)
     records.sort_by { |r| r.last_name }.reverse
   end

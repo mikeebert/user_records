@@ -1,6 +1,6 @@
 require 'user_record'
 
-class RecordCreator
+class UserRecordCreator
 
   LAST_NAME_POSITION = 0
   FIRST_NAME_POSITION = 1

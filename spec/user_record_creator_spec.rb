@@ -1,29 +1,29 @@
-require 'record_creator'
+require 'user_record_creator'
 require 'user_record'
 
-describe RecordCreator do
+describe UserRecordCreator do
 
   context 'invalid data' do
     it 'is invalid if no data is passed in' do
-      creator = RecordCreator.new('')
+      creator = UserRecordCreator.new('')
 
       expect(creator.valid?).to eq(false)
     end
 
     it 'is invalid if less than 4 fields are present' do
-      creator = RecordCreator.new("Last, First, Color")
+      creator = UserRecordCreator.new("Last, First, Color")
 
       expect(creator.valid?).to eq(false)
     end
 
     it 'is invalid if more than 4 fields are present' do
-      creator = RecordCreator.new("Last, First, Color, DOB, ExtraField")
+      creator = UserRecordCreator.new("Last, First, Color, DOB, ExtraField")
 
       expect(creator.valid?).to eq(false)
     end
 
     it 'is invalid if a non-standard separator is passed in' do
-      creator = RecordCreator.new("Last ; First ; Color ; DOB ; ExtraField")
+      creator = UserRecordCreator.new("Last ; First ; Color ; DOB ; ExtraField")
 
       expect(creator.valid?).to eq(false)
     end
@@ -31,7 +31,7 @@ describe RecordCreator do
 
   context 'date validation' do
     it 'is invalid if an improper date is passed in' do
-      creator = RecordCreator.new("Last, First, Favorite, 2/31/2017")
+      creator = UserRecordCreator.new("Last, First, Favorite, 2/31/2017")
 
       expect(creator.valid?).to eq(false)
     end
@@ -39,7 +39,7 @@ describe RecordCreator do
 
   context 'valid data' do
     it 'is valid if all fields are passed in' do
-      creator = RecordCreator.new("LastName, FirstName, FavoriteColor, 28/02/2001")
+      creator = UserRecordCreator.new("LastName, FirstName, FavoriteColor, 28/02/2001")
 
       expect(creator.valid?).to eq(true)
     end
@@ -48,7 +48,7 @@ describe RecordCreator do
   context 'returning a valid record' do
     it 'builds a record with valid data' do
       date_of_birth = "31/1/2001"
-      creator = RecordCreator.new("Last, First, Color, #{date_of_birth}")
+      creator = UserRecordCreator.new("Last, First, Color, #{date_of_birth}")
       user_record = creator.record
 
       expect(user_record.first_name).to eq("First")
@@ -60,25 +60,25 @@ describe RecordCreator do
 
   context 'parsing data' do
     it 'parses a comma separated data record' do
-      creator = RecordCreator.new("LastName, FirstName, FavoriteColor, 01/01/01")
+      creator = UserRecordCreator.new("LastName, FirstName, FavoriteColor, 01/01/01")
 
       expect(creator.fields.length).to eq(4)
     end
 
     it 'parses a pipe delimited data record' do
-      creator = RecordCreator.new("LastName | FirstName | FavoriteColor | 01/01/01")
+      creator = UserRecordCreator.new("LastName | FirstName | FavoriteColor | 01/01/01")
 
       expect(creator.fields.length).to eq(4)
     end
 
     it 'strips white space from pipe-delimited data records' do
-      creator = RecordCreator.new("LastName | FirstName | FavoriteColor | 01/01/01")
+      creator = UserRecordCreator.new("LastName | FirstName | FavoriteColor | 01/01/01")
 
       expect(creator.fields.first).to eq("LastName")
     end
 
     it 'strips white space from comma separated data records' do
-      creator = RecordCreator.new("LastName , FirstName , FavoriteColor , 01/01/01")
+      creator = UserRecordCreator.new("LastName , FirstName , FavoriteColor , 01/01/01")
 
       expect(creator.fields.first).to eq("LastName")
     end

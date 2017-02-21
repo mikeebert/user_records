@@ -1,5 +1,5 @@
 require 'csv'
-require 'record_creator'
+require 'user_record_creator'
 
 class Datastore
 
@@ -15,7 +15,7 @@ class Datastore
 
   def self.records
     File.read(@data_location).lines.map do |record|
-      RecordCreator.new(record).record
+      UserRecordCreator.new(record).record
     end
   end
 
