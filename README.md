@@ -17,7 +17,7 @@ Records should be posted using the following format, and the `Content-Type: appl
 `FirstName, LastName, FavoriteColor, DateOfBirth(as dd/mm/yyyy)`.
 
 Values may be delimited using a comma or a pipe. Example posts:  
-`curl -X POST -H 'Content-Type: application/txt' localhost:9292/records -d 'Clay, Cassius, Yellow, 17/1/1942'`
+`curl -X POST -H 'Content-Type: application/txt' localhost:9292/records -d 'Clay, Cassius, Yellow, 17/1/1942'`  
 `curl -X POST -H 'Content-Type: application/txt' localhost:9292/records -d 'Balboa | Rocky | Red | 6/1/1945'`  
 (The app has also been tested with clients such as [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog) and [ARC](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?utm_source=chrome-app-launcher-info-dialog)).
 
